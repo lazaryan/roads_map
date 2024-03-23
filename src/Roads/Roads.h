@@ -16,6 +16,9 @@ namespace Roads
 typedef int t_district_id;
 typedef int t_road_id;
 
+typedef std::map<t_district_id, Databases::District> t_district_map;
+typedef std::map<t_road_id, Databases::Road> t_road_map;
+
 struct Settings
 {
 	int traffic_light_weight;
@@ -44,18 +47,18 @@ public:
 	~Roads();
 	 
 	std::vector<Databases::Road> generate_path(
-		t_district_id district_from,
-		t_district_id district_to
+		t_district_id district_from_id,
+		t_district_id district_to_id
 	);
 private:
-	std::map<t_district_id, Databases::District> districts_map;
-	std::map<t_road_id, Databases::Road> roads_map;
+	t_district_map districts_map;
+	t_road_map roads_map;
 
 	std::map<t_district_id, RoadNode> nodes;
 
 	std::map<t_district_id, RoadNode> generate_tree(
-		std::map<t_district_id, Databases::District> districts_map,
-		std::map<t_road_id, Databases::Road> roads_map
+		t_district_map districts_map,
+		t_road_map roads_map
 	);
 
 	Settings settings;
@@ -64,7 +67,7 @@ private:
 
 	static inline Settings DEFAULT_SETTINGS = {
 		500,
-	};
+	}; 
 };
 
 }

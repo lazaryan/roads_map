@@ -48,7 +48,7 @@ int main() {
 		ini_settings.get("weights")
 	);
 
-	auto path = roads_map->generate_path(0, 1);
+	auto path = roads_map->generate_path(1, 8);
 
 	std::cout << "Test: " << ini_settings.get("weights").get("BASE_WEIGHT") << std::endl;
 

@@ -65,8 +65,8 @@ void Roads::set_settings(mINI::INIMap<std::string> settings_map)
 }
 
 std::map<t_district_id, RoadNode> Roads::generate_tree(
-	std::map<t_district_id, Databases::District> districts_map,
-	std::map<t_road_id, Databases::Road> roads_map
+	t_district_map districts_map,
+	t_road_map roads_map
 )
 {
 	std::map<t_district_id, RoadNode> nodes;
@@ -80,16 +80,16 @@ std::map<t_district_id, RoadNode> Roads::generate_tree(
 			std::map<t_road_id, Databases::Road>::const_iterator road = roads_map.find(road_id);
 			if (road == roads_map.end()) {
 				std::cout << "Skip add road "
-					<< road_id << "For district "
-					<< district_id << "Because road not found" << std::endl;
+					<< road_id << " for district "
+					<< district_id << ", because road not found" << std::endl;
 				continue;
 			};
 
 			std::map<t_district_id, Databases::District>::const_iterator district = districts_map.find(road->second.district_id_to);
 			if (district == districts_map.end()) {
 				std::cout << "Skip add district_to "
-					<< road->second.district_id_to << "For district "
-					<< district_id << "Because district not found" << std::endl;
+					<< road->second.district_id_to << " for district "
+					<< district_id << ", because district not found" << std::endl;
 				continue;
 			};
 
@@ -113,12 +113,26 @@ std::map<t_district_id, RoadNode> Roads::generate_tree(
 }
 
 std::vector<Databases::Road> Roads::generate_path(
-	t_district_id district_from,
-	t_district_id district_to
+	t_district_id district_from_id,
+	t_district_id district_to_id
 )
 {
+	std::cout << "Generate tree path from " << district_from_id << " to " << district_to_id << std::endl;
+
 	std::vector<Databases::Road> path;
-	// todo
+	
+	std::map<t_district_id, RoadNode>::const_iterator district_from_iter = this->nodes.find(district_from_id);
+	std::map<t_district_id, RoadNode>::const_iterator district_to_iter = this->nodes.find(district_to_id);
+
+	if (district_from_iter == this->nodes.end()) {
+		std::cout << "District from " << district_from_id << " not found" << std::endl;
+		return path;
+	}
+
+	if (district_to_iter == this->nodes.end()) {
+		std::cout << "District to " << district_to_id << " not found" << std::endl;
+		return path;
+	}
 
 	return path;
 }
