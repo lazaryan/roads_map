@@ -46,7 +46,7 @@ public:
 	);
 	~Roads();
 	 
-	std::vector<Databases::Road> generate_path(
+	std::vector<Databases::Road> generate_paths(
 		t_district_id district_from_id,
 		t_district_id district_to_id
 	);

@@ -11,10 +11,16 @@ namespace Databases {
 	typedef int t_district_id;
 	typedef int t_road_id;
 
+	/**
+	 * Сущность дороги (полосы) между двумя районами
+	*/
 	struct Road {
 		t_road_id id;
+		// из какого района она ведет
 		t_district_id district_id_from;
+		// куда
 		t_district_id district_id_to;
+		// вес дороги Чем он больше, тем хуже дорога
 		int weight;
 	};
 

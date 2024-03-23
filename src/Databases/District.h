@@ -11,6 +11,9 @@ namespace Databases {
 	typedef int t_district_id;
 	typedef int t_road_id;
 
+	/**
+	 *  Сущность района
+	 */
 	struct District {
 		t_district_id id;
 		std::string title;

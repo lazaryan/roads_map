@@ -112,29 +112,27 @@ std::map<t_district_id, RoadNode> Roads::generate_tree(
 	return nodes;
 }
 
-std::vector<Databases::Road> Roads::generate_path(
+std::vector<Databases::Road> Roads::generate_paths(
 	t_district_id district_from_id,
 	t_district_id district_to_id
 )
 {
 	std::cout << "Generate tree path from " << district_from_id << " to " << district_to_id << std::endl;
-
-	std::vector<Databases::Road> path;
 	
 	std::map<t_district_id, RoadNode>::const_iterator district_from_iter = this->nodes.find(district_from_id);
 	std::map<t_district_id, RoadNode>::const_iterator district_to_iter = this->nodes.find(district_to_id);
 
 	if (district_from_iter == this->nodes.end()) {
 		std::cout << "District from " << district_from_id << " not found" << std::endl;
-		return path;
+		return std::vector<Databases::Road>();
 	}
 
 	if (district_to_iter == this->nodes.end()) {
 		std::cout << "District to " << district_to_id << " not found" << std::endl;
-		return path;
+		return std::vector<Databases::Road>();
 	}
 
-	return path;
+	return std::vector<Databases::Road>();
 }
 
 }
