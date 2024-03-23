@@ -16,6 +16,11 @@ namespace Roads
 typedef int t_district_id;
 typedef int t_road_id;
 
+struct Settings
+{
+	int traffic_light_weight;
+};
+
 struct RoadPath
 {
 	Databases::Road road;
@@ -53,9 +58,13 @@ private:
 		std::map<t_road_id, Databases::Road> roads_map
 	);
 
+	Settings settings;
+
 	void set_settings(mINI::INIMap<std::string> settings);
 
-	int traffic_light_weight = 500;
+	static inline Settings DEFAULT_SETTINGS = {
+		500,
+	};
 };
 
 }
