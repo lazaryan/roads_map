@@ -48,11 +48,17 @@ Roads::~Roads()
 
 void Roads::set_settings(mINI::INIMap<std::string> settings_map)
 {
+	std::string road_lengths_weight = settings_map.get("WEIGHT_ROAD_LENGTH");
+	std::string quality_of_roads_weight = settings_map.get("WEIGHT_QUALITY_OF_ROADS");
+	std::string speed_bumbs_weight = settings_map.get("WEIGHT_SPEED_BUMBS");
 	std::string traffic_light_weight = settings_map.get("WEIGHT_TRAFFIC_LIGHT");
 
 	try
 	{
 		Settings settings = Settings {
+			road_lengths_weight.length() > 0 ? std::stoi(road_lengths_weight) : Roads::DEFAULT_SETTINGS.road_lengths_weight,
+			quality_of_roads_weight.length() > 0 ? std::stoi(quality_of_roads_weight) : Roads::DEFAULT_SETTINGS.quality_of_roads_weight,
+			speed_bumbs_weight.length() > 0 ? std::stoi(speed_bumbs_weight) : Roads::DEFAULT_SETTINGS.speed_bumbs_weight,
 			traffic_light_weight.length() > 0 ? std::stoi(traffic_light_weight) : Roads::DEFAULT_SETTINGS.traffic_light_weight,
 		};
 

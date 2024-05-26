@@ -19,8 +19,15 @@ typedef int t_road_id;
 typedef std::map<t_district_id, Databases::District> t_district_map;
 typedef std::map<t_road_id, Databases::Road> t_road_map;
 
+/*
+* Настройки для подсчета весов
+* значения от 0 до 1000
+*/
 struct Settings
 {
+	int road_lengths_weight;
+	int quality_of_roads_weight;
+	int speed_bumbs_weight;
 	int traffic_light_weight;
 };
 
@@ -66,7 +73,10 @@ private:
 	void set_settings(mINI::INIMap<std::string> settings);
 
 	static inline Settings DEFAULT_SETTINGS = {
-		500,
+		100,
+		100,
+		100,
+		100,
 	}; 
 };
 
