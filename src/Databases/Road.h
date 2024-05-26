@@ -16,12 +16,20 @@ namespace Databases {
 	*/
 	struct Road {
 		t_road_id id;
+		// имя ребра
+		std::string name;
 		// из какого района она ведет
 		t_district_id district_id_from;
 		// куда
 		t_district_id district_id_to;
-		// вес дороги Чем он больше, тем хуже дорога
-		int weight;
+		// длина дороги в виде коэффициента от 0 (короткая) до 10 (длинная)
+		int length;
+		// качество дороги в виде коэффициента от 0 (плохо) до 10 (супер)
+		int quality_of_roads;
+		// число лежачих полицейских на участке
+		int speed_bumbs_count;
+		// число светофоров на участке
+		int traffic_lights_count;
 	};
 
 	class Roads : public CSV::CSVReader<Road>
@@ -52,7 +60,7 @@ namespace Databases {
 
 		Road* line_reader(std::vector<std::string> item)
 		{
-			if (item.size() != 4) {
+			if (item.size() < 8) {
 				return nullptr;
 			}
 
@@ -60,9 +68,13 @@ namespace Databases {
 			{
 				Road* new_item = new Road{
 					std::stoi(item[0]),
-					std::stoi(item[1]),
+					item[1],
 					std::stoi(item[2]),
 					std::stoi(item[3]),
+					std::stoi(item[4]),
+					std::stoi(item[5]),
+					std::stoi(item[6]),
+					std::stoi(item[7]),
 				};
 
 				return new_item;

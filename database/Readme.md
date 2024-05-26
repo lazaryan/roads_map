@@ -8,6 +8,6 @@
 
 ## Roads
 
-| road_id | dictric_from | dictric_to | weight |
-| ------- | :----------- | :--------- | :----- |
-| number  | number       | number     | number |
+| road_id | name   | dictric_from | dictric_to | length   | quality_of_roads | speed_bumbs_count | traffic_lights_count | averager_coeff (skip) |
+| ------- | :----- |:------------ | :--------- | :------- | :--------------- | :---------------- | :------------------- | :-------------------- |
+| number  | number | number       | number     | [0...10] | [0...10]         | number            | number               | [0...1]               |
