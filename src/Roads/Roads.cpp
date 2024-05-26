@@ -36,6 +36,7 @@ Roads::Roads(
 	this->roads_map = roads_map;
 
 	this->nodes = this->generate_tree(districts_map, roads_map);
+	this->road_weights = this->get_road_weights(this->roads_map, this->settings);
 }
 
 Roads::~Roads()
@@ -139,6 +140,34 @@ std::vector<Databases::Road> Roads::generate_paths(
 	}
 
 	return std::vector<Databases::Road>();
+}
+
+t_road_weights Roads::get_road_weights(t_road_map roads_map, Settings settings)
+{
+	t_road_weights weights = t_road_weights();
+
+	for (const auto& [road_id, road] : roads_map)
+	{
+		t_road_weight weight = this->get_road_weight(road, settings);
+		weights.emplace(road_id, weight);
+	}
+
+	return weights;
+}
+
+t_road_weight Roads::get_road_weight(Databases::Road road, Settings settings)
+{
+	t_road_weight weight = (t_road_weight)(
+		road.length * settings.road_lengths_weight
+		+ (MAX_VALUE_QALITY_WEIGHT - road.quality_of_roads) * settings.quality_of_roads_weight
+		+ road.speed_bumbs_count * settings.speed_bumbs_weight
+		+ road.traffic_lights_count * settings.traffic_light_weight
+		) / (MAX_SETTING_WEIGHT * 4);
+
+	if (weight < 0) return 0;
+	if (weight > 1) return 1;
+
+	return weight;
 }
 
 }
