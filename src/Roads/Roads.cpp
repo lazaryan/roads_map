@@ -143,6 +143,17 @@ t_road_path Roads::generate_paths(
 			district_to_id
 		);
 	}
+	else if (this->settings_search.alg == "levit")
+	{
+		std::cout << "Usign alghoritm: " << "Levit" << std::endl;
+
+		path = Graph::levit_search(
+			this->distrcits_map_paths,
+			this->road_weights,
+			district_from_id,
+			district_to_id
+		);
+	}
 	else
 	{
 		std::cout << "Usign alghoritm: " << "Deikstra" << std::endl;
