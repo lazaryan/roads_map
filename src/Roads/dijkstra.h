@@ -76,7 +76,7 @@ Roads::t_graph_path dijkstra_search(
 
     /**
      * Вычисление маршрута
-    */
+     */
     Roads::t_road_weight end_weight = distances[end_id];
     Roads::t_district_id end_id_din = end_id;
 

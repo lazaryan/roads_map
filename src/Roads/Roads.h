@@ -32,8 +32,8 @@ const int MAX_SETTING_WEIGHT = 1000;
 const int MAX_VALUE_QALITY_WEIGHT = 10;
 
 /*
-* Настройки для подсчета весов
-* значения от 0 до 1000
+*    
+*   0  1000
 */
 struct Settings
 {

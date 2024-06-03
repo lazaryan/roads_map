@@ -1,4 +1,4 @@
-﻿#ifndef __CSV_CSVWRITTER__H_
+#ifndef __CSV_CSVWRITTER__H_
 #define __CSV_CSVWRITTER__H_
 
 #include <string>
