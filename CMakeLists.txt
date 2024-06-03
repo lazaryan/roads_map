@@ -23,7 +23,8 @@ add_executable(${PROJECT_NAME}
 
 	"src/Roads/Roads.h"
 	"src/Roads/Roads.cpp"
-	"src/Roads/dijkstra.cpp"
+	"src/Roads/dijkstra.h"
+	"src/Roads/levit.h"
 	${LIBS_PATHS}
  )
 

@@ -50,7 +50,12 @@ int main() {
 
 	auto paths = roads_map->generate_paths(1, 8);
 
-	std::cout << "Test: " << ini_settings.get("weights").get("BASE_WEIGHT") << std::endl;
+	std::cout << "path from " << 1 << " to " << 8 << ":" << std::endl;
+
+	for (Databases::Road road : paths)
+	{
+		std::cout << "{ road_id: \"" << road.id << "\"; road_name: \"" << road.name << "\"; }" << std::endl;
+	}
 
 	return 0;
 }

@@ -2,6 +2,8 @@
 #include <algorithm>
 
 #include "./Roads.h"
+#include "./levit.h"
+#include "./dijkstra.h"
 
 namespace Roads
 {
@@ -34,6 +36,8 @@ Roads::Roads(
 
 	this->districts_map = districts_map;
 	this->roads_map = roads_map;
+
+	this->distrcits_map_paths = this->generater_districts_map(districts_map, roads_map);
 
 	this->nodes = this->generate_tree(districts_map, roads_map);
 	this->road_weights = this->get_road_weights(this->roads_map, this->settings);
@@ -119,7 +123,37 @@ std::map<t_district_id, RoadNode> Roads::generate_tree(
 	return nodes;
 }
 
-std::vector<Databases::Road> Roads::generate_paths(
+t_distrcits_path_map Roads::generater_districts_map(
+	t_district_map districts_map,
+	t_road_map roads_map
+)
+{
+	t_distrcits_path_map districts_path;
+
+	for (const auto& [district_id, district] : districts_map)
+	{
+		t_distrcit_road_map district_roads_map;
+
+		for (const Databases::t_road_id road_id : *district.road_ids)
+		{
+			Databases::Road road = roads_map[road_id];
+
+			district_roads_map.emplace(
+				road.district_id_to,
+				road_id
+			);
+		}
+
+		districts_path.emplace(
+			district_id,
+			district_roads_map
+		);
+	}
+
+	return districts_path;
+}
+
+t_road_path Roads::generate_paths(
 	t_district_id district_from_id,
 	t_district_id district_to_id
 )
@@ -139,7 +173,21 @@ std::vector<Databases::Road> Roads::generate_paths(
 		return std::vector<Databases::Road>();
 	}
 
-	return std::vector<Databases::Road>();
+	t_graph_path path = Graph::dijkstra_search(
+		this->distrcits_map_paths,
+		this->road_weights,
+		district_from_id,
+		district_to_id
+	);
+
+	t_road_path result_path;
+
+	for (const t_road_id road_id : path)
+	{
+		result_path.push_back(this->roads_map[road_id]);
+	}
+
+	return result_path;
 }
 
 t_road_weights Roads::get_road_weights(t_road_map roads_map, Settings settings)
@@ -162,7 +210,7 @@ t_road_weight Roads::get_road_weight(Databases::Road road, Settings settings)
 		+ (MAX_VALUE_QALITY_WEIGHT - road.quality_of_roads) * settings.quality_of_roads_weight
 		+ road.speed_bumbs_count * settings.speed_bumbs_weight
 		+ road.traffic_lights_count * settings.traffic_light_weight
-		) / (MAX_SETTING_WEIGHT * 4);
+		)/* / (MAX_SETTING_WEIGHT * 4) */;
 
 	if (weight < 0) return 0;
 	if (weight > 1) return 1;
