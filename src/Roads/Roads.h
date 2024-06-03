@@ -1,4 +1,4 @@
-#ifndef __ROADS_STRUCT_H__
+ï»¿#ifndef __ROADS_STRUCT_H__
 #define __ROADS_STRUCT_H__
 
 #include <vector>
@@ -32,8 +32,8 @@ const int MAX_SETTING_WEIGHT = 1000;
 const int MAX_VALUE_QALITY_WEIGHT = 10;
 
 /*
-* ˜˜˜˜˜˜˜˜˜ ˜˜˜ ˜˜˜˜˜˜˜˜ ˜˜˜˜˜
-* ˜˜˜˜˜˜˜˜ ˜˜ 0 ˜˜ 1000
+* Â˜Â˜Â˜Â˜Â˜Â˜Â˜Â˜Â˜ Â˜Â˜Â˜ Â˜Â˜Â˜Â˜Â˜Â˜Â˜Â˜ Â˜Â˜Â˜Â˜Â˜
+* Â˜Â˜Â˜Â˜Â˜Â˜Â˜Â˜ Â˜Â˜ 0 Â˜Â˜ 1000
 */
 struct Settings
 {

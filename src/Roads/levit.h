@@ -1,4 +1,4 @@
-#include <map>
+п»ї#include <map>
 #include <vector>
 #include <deque>
 
@@ -8,7 +8,7 @@ namespace Graph
 {
 
 /*
- * Алгоритм Левит
+ * РђР»РіРѕСЂРёС‚Рј Р›РµРІРёС‚
  */
 Roads::t_graph_path levit_search(
 	Roads::t_distrcits_path_map graph,

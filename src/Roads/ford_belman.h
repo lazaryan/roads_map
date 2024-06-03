@@ -1,4 +1,4 @@
-#ifndef __ROADS_GRAPH_FORD_BELMAN_H__
+п»ї#ifndef __ROADS_GRAPH_FORD_BELMAN_H__
 #define __ROADS_GRAPH_FORD_BELMAN_H__
 
 
@@ -13,7 +13,7 @@ namespace Graph {
 const int INF = 1000000000;
 
 /*
- * Алгоритм Форда-Бельмана
+ * РђР»РіРѕСЂРёС‚Рј Р¤РѕСЂРґР°-Р‘РµР»СЊРјР°РЅР°
  */
 Roads::t_graph_path ford_belman_search(
     Roads::t_distrcits_path_map distrcits,

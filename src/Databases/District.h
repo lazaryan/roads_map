@@ -1,4 +1,4 @@
-#ifndef __DATABASES_DISTRICT_H__
+п»ї#ifndef __DATABASES_DISTRICT_H__
 #define __DATABASES_DISTRICT_H__
 
 #include <algorithm>
@@ -12,7 +12,7 @@ namespace Databases {
 	typedef int t_road_id;
 
 	/**
-	 *  Сущность района
+	 *  РЎСѓС‰РЅРѕСЃС‚СЊ СЂР°Р№РѕРЅР°
 	 */
 	struct District {
 		t_district_id id;

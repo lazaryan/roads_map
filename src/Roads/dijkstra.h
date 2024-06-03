@@ -1,4 +1,4 @@
-#ifndef __ROADS_GRAPH_DEIKSTRA_H__
+п»ї#ifndef __ROADS_GRAPH_DEIKSTRA_H__
 #define __ROADS_GRAPH_DEIKSTRA_H__
 
 
@@ -13,7 +13,7 @@ namespace Graph {
 const Roads::t_road_weight MAX_WEIGHT = 100000000;
 
 /*
- * Алгоритм Дейкстры
+ * РђР»РіРѕСЂРёС‚Рј Р”РµР№РєСЃС‚СЂС‹
  */
 Roads::t_graph_path dijkstra_search(
 	Roads::t_distrcits_path_map graph,
@@ -24,9 +24,9 @@ Roads::t_graph_path dijkstra_search(
 {
 	const size_t graph_size = graph.size();
 
-	// минимальная дистанция
+	// РјРёРЅРёРјР°Р»СЊРЅР°СЏ РґРёСЃС‚Р°РЅС†РёСЏ
 	std::map<Roads::t_district_id, Roads::t_road_weight> distances;
-	// посещенные вершины
+	// РїРѕСЃРµС‰РµРЅРЅС‹Рµ РІРµСЂС€РёРЅС‹
 	std::map<Roads::t_district_id, bool> visited;
 
     Roads::t_road_weight minimalWeight;
@@ -75,7 +75,7 @@ Roads::t_graph_path dijkstra_search(
     } while (minimalIndex < INT_MAX);
 
     /**
-     * Вычисление маршрута
+     * Р’С‹С‡РёСЃР»РµРЅРёРµ РјР°СЂС€СЂСѓС‚Р°
      */
     Roads::t_road_weight end_weight = distances[end_id];
     Roads::t_district_id end_id_din = end_id;
@@ -101,7 +101,7 @@ Roads::t_graph_path dijkstra_search(
         }
     }
 
-    // Делаем маршрут start => finish
+    // Р”РµР»Р°РµРј РјР°СЂС€СЂСѓС‚ start => finish
     std::reverse(std::begin(path), std::end(path));
     return path;
 }
