@@ -43,6 +43,11 @@ struct Settings
 	int traffic_light_weight;
 };
 
+struct SearchSettings
+{
+	std::string alg;
+};
+
 struct RoadPath
 {
 	Databases::Road road;
@@ -61,7 +66,8 @@ public:
 	Roads(
 		std::vector<Databases::District*> districts,
 		std::vector<Databases::Road*> roads,
-		mINI::INIMap<std::string> settings
+		mINI::INIMap<std::string> settings_weights,
+		mINI::INIMap<std::string> settings_search
 	);
 	~Roads();
 	 
@@ -74,26 +80,22 @@ private:
 	t_road_map roads_map;
 	t_road_weights road_weights;
 
-	std::map<t_district_id, RoadNode> nodes;
+	std::vector<Databases::Road*> roads_vector;
 
 	t_distrcits_path_map distrcits_map_paths;
 
-	Settings settings;
+	Settings settings_weights;
+	SearchSettings settings_search;
 
-	void set_settings(mINI::INIMap<std::string> settings);
-
-	std::map<t_district_id, RoadNode> generate_tree(
-		t_district_map districts_map,
-		t_road_map roads_map
-	);
+	void set_settings(mINI::INIMap<std::string> settings_weights);
 
 	t_distrcits_path_map generater_districts_map(
 		t_district_map districts_map,
 		t_road_map roads_map
 	);
 
-	t_road_weights get_road_weights(t_road_map roads_map, Settings settings);
-	t_road_weight get_road_weight(Databases::Road road, Settings settings);
+	t_road_weights get_road_weights(t_road_map roads_map, Settings settings_weights);
+	t_road_weight get_road_weight(Databases::Road road, Settings settings_weights);
 
 	static inline Settings DEFAULT_SETTINGS = {
 		100,

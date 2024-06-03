@@ -25,6 +25,8 @@ add_executable(${PROJECT_NAME}
 	"src/Roads/Roads.cpp"
 	"src/Roads/dijkstra.h"
 	"src/Roads/levit.h"
+	"src/Roads/ford_belman.h"
+
 	${LIBS_PATHS}
  )
 

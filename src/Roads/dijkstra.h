@@ -10,8 +10,11 @@
 
 namespace Graph {
 
-const Roads::t_road_weight MAX_WEIGHT = 10.0;
+const Roads::t_road_weight MAX_WEIGHT = 100000000;
 
+/*
+ * Алгоритм Дейкстры
+ */
 Roads::t_graph_path dijkstra_search(
 	Roads::t_distrcits_path_map graph,
 	Roads::t_road_weights road_weights,

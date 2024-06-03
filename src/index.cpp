@@ -42,15 +42,27 @@ int main() {
 		return -1;
 	}
 
+	mINI::INIMap search_settings = ini_settings.get("search");
+
 	Roads::Roads* roads_map = new Roads::Roads(
 		districts_list,
 		roads_list,
-		ini_settings.get("weights")
+		ini_settings.get("weights"),
+		search_settings
 	);
 
-	auto paths = roads_map->generate_paths(1, 8);
+	std::string distrcit_from_str_setting = search_settings.get("SEARCH_FROM_ID");
+	std::string distrcit_to_str_setting = search_settings.get("SEARCH_TO_ID");
 
-	std::cout << "path from " << 1 << " to " << 8 << ":" << std::endl;
+	Roads::t_district_id distrcit_from = distrcit_from_str_setting.length() > 0 ? std::stoi(distrcit_from_str_setting) : 1;
+	Roads::t_district_id distrcit_to = distrcit_to_str_setting.length() > 0 ? std::stoi(distrcit_to_str_setting) : 8;
+
+	auto paths = roads_map->generate_paths(
+		distrcit_from,
+		distrcit_to
+	);
+
+	std::cout << "path from " << distrcit_from << " to " << distrcit_to << ":" << std::endl;
 
 	for (Databases::Road road : paths)
 	{
