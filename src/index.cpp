@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
 
 #include "../libs/ini.h"
 
@@ -51,11 +52,14 @@ int main() {
 		search_settings
 	);
 
-	std::string distrcit_from_str_setting = search_settings.get("SEARCH_FROM_ID");
-	std::string distrcit_to_str_setting = search_settings.get("SEARCH_TO_ID");
+	Roads::t_district_id distrcit_from;
+	Roads::t_district_id distrcit_to;
 
-	Roads::t_district_id distrcit_from = distrcit_from_str_setting.length() > 0 ? std::stoi(distrcit_from_str_setting) : 1;
-	Roads::t_district_id distrcit_to = distrcit_to_str_setting.length() > 0 ? std::stoi(distrcit_to_str_setting) : 8;
+	std::cout << "Enter distrcict from: ";
+	std::cin >> distrcit_from;
+
+	std::cout << "Enter distrcict to: ";
+	std::cin >> distrcit_to;
 
 	auto paths = roads_map->generate_paths(
 		distrcit_from,
