@@ -1,4 +1,7 @@
-﻿#include <map>
+﻿#ifndef __ROADS_GRAPH_LEVIT_H__
+#define __ROADS_GRAPH_LEVIT_H__
+
+#include <map>
 #include <vector>
 #include <deque>
 
@@ -89,3 +92,4 @@ Roads::t_graph_path levit_search(
 
 }
 
+#endif // !__ROADS_GRAPH_LEVIT_H__
