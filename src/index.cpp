@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <Windows.h>
+#include <conio.h>
 
 #include "../libs/ini.h"
 
@@ -62,17 +63,20 @@ int main() {
 	std::cout << "Enter distrcict to: ";
 	std::cin >> distrcit_to;
 
+	std::cout << std::endl;
+
 	auto paths = roads_map->generate_paths(
 		distrcit_from,
 		distrcit_to
 	);
 
-	std::cout << "path from " << distrcit_from << " to " << distrcit_to << ":" << std::endl;
-
+	std::cout << "Result path:" << std::endl;
 	for (Databases::Road road : paths)
 	{
 		std::cout << "{ road_id: \"" << road.id << "\"; road_name: \"" << road.name << "\"; }" << std::endl;
 	}
+
+	int c = _getch();
 
 	return 0;
 }

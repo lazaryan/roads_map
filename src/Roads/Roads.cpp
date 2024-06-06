@@ -1,5 +1,6 @@
 ﻿#include <map>
 #include <algorithm>
+#include <iostream>
 
 #include "./Roads.h"
 #include "./levit.h"
@@ -112,9 +113,7 @@ t_road_path Roads::generate_paths(
 	t_district_id district_from_id,
 	t_district_id district_to_id
 )
-{
-	std::cout << "Generate tree path from " << district_from_id << " to " << district_to_id << std::endl;
-	
+{	
 	t_distrcits_path_map::const_iterator district_from_iter = this->distrcits_map_paths.find(district_from_id);
 	t_distrcits_path_map::const_iterator district_to_iter = this->distrcits_map_paths.find(district_to_id);
 
@@ -128,11 +127,16 @@ t_road_path Roads::generate_paths(
 		return std::vector<Databases::Road>();
 	}
 
+	std::cout << "Generate tree path:" << std::endl;
+	std::cout << "From: id [" << district_from_id << "] street \"" << this->districts_map[district_from_id].title << "\"" << std::endl;
+	std::cout << "To: id [" << district_to_id << "] street \"" << this->districts_map[district_to_id].title << "\"" << std::endl;
+	std::cout << std::endl;
+
 	t_graph_path path;
 
 	if (this->settings_search.alg == "ford_belman")
 	{
-		std::cout << "Usign alghoritm: " << "Ford-Belman" << std::endl;
+		std::cout << "Usign alghoritm: " << "Ford-Belman" << std::endl << std::endl;
 
 		path = Graph::ford_belman_search(
 			this->distrcits_map_paths,
@@ -145,7 +149,7 @@ t_road_path Roads::generate_paths(
 	}
 	else if (this->settings_search.alg == "levit")
 	{
-		std::cout << "Usign alghoritm: " << "Levit" << std::endl;
+		std::cout << "Usign alghoritm: " << "Levit" << std::endl << std::endl;
 
 		path = Graph::levit_search(
 			this->distrcits_map_paths,
@@ -156,7 +160,7 @@ t_road_path Roads::generate_paths(
 	}
 	else
 	{
-		std::cout << "Usign alghoritm: " << "Deikstra" << std::endl;
+		std::cout << "Usign alghoritm: " << "Deikstra" << std::endl << std::endl;
 
 		path = Graph::dijkstra_search(
 			this->distrcits_map_paths,
