@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <Windows.h>
 
 #include "../libs/ini.h"
 
@@ -18,6 +19,8 @@ int main() {
 	mINI::INIFile file_settings(PATH_TO_SETTINGS);
 	mINI::INIStructure ini_settings;
 	file_settings.read(ini_settings);
+
+	SetConsoleOutputCP(CP_UTF8);
 
 	mINI::INIMap paths_settings = ini_settings.get("paths");
 
@@ -43,13 +46,11 @@ int main() {
 		return -1;
 	}
 
-	mINI::INIMap search_settings = ini_settings.get("search");
-
 	Roads::Roads* roads_map = new Roads::Roads(
 		districts_list,
 		roads_list,
 		ini_settings.get("weights"),
-		search_settings
+		ini_settings.get("search")
 	);
 
 	Roads::t_district_id distrcit_from;

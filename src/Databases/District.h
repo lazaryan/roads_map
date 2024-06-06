@@ -67,7 +67,7 @@ namespace Databases {
 
 			while ((position_separator = item[2].find(this->separator_roads)) != std::string::npos) {
 				item_cache = item[2].substr(0, position_separator);
-				roads->push_back(std::stoi(item_cache));
+				roads->push_back(this->convertUTF8StringToInt(item_cache));
 				item[2].erase(0, position_separator + 1);
 			}
 
@@ -79,7 +79,7 @@ namespace Databases {
 			try
 			{
 				District* new_item = new District{
-					std::stoi(item[0]),
+					this->convertUTF8StringToInt(item[0]),
 					item[1],
 					roads,
 				};

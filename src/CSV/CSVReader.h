@@ -6,6 +6,8 @@
 #include <istream>
 #include <fstream>
 #include <iostream>
+#include <codecvt>
+#include <sstream>
 
 #include "./interfaces.h"
 
@@ -123,6 +125,15 @@ namespace CSV {
 
 	protected:
 		std::vector<T*> db;
+
+		int convertUTF8StringToInt(std::string line)
+		{
+			std::istringstream ss{ line };
+			int number;
+
+			ss >> number;
+			return number;
+		}
 
 	private:
 		std::ifstream file_stream;

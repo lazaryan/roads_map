@@ -67,14 +67,14 @@ namespace Databases {
 			try
 			{
 				Road* new_item = new Road{
-					std::stoi(item[0]),
+					this->convertUTF8StringToInt(item[0]),
 					item[1],
-					std::stoi(item[2]),
-					std::stoi(item[3]),
-					std::stoi(item[4]),
-					std::stoi(item[5]),
-					std::stoi(item[6]),
-					std::stoi(item[7]),
+					this->convertUTF8StringToInt(item[2]),
+					this->convertUTF8StringToInt(item[3]),
+					this->convertUTF8StringToInt(item[4]),
+					this->convertUTF8StringToInt(item[5]),
+					this->convertUTF8StringToInt(item[6]),
+					this->convertUTF8StringToInt(item[7]),
 				};
 
 				return new_item;
